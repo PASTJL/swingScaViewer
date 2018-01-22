@@ -142,9 +142,9 @@
 			</fileset>
 		</delete>
 
-		<!--jar destfile="${basedir}/../swingScaViewer.zip" basedir="${basedir}" update="false"  includes="**/swingScaViewer.jar **/config/*.* **/libExt/*.* **/Licenses/*.* **/logs/*.* **/manuals/*.* **/myPlugins/*.* **/uploads/**/*.* **/scripts/*.* **/myCommands/**/*.* **/libCommands/*.* **/templates/**/*.*" excludes="**/manuals/*.odt **/docs/*.* **/docs/** **/libCommands/confxpert.jar **/libExt/mysql*.* **/libExt/ojdb*.jar" >
+		<jar destfile="${basedir}/../swingScaViewer.zip" basedir="${basedir}" update="false"  includes="**/swingScaViewer.jar **/config/*.* **/libExt/*.* **/Licenses/*.* **/logs/*.* **/manuals/*.* **/myPlugins/*.* **/uploads/**/*.* **/scripts/*.* **/myCommands/**/*.* **/libCommands/*.* **/templates/**/*.*" excludes="**/manuals/*.odt **/docs/*.* **/docs/** **/libCommands/confxpert.jar **/libExt/mysql*.* **/libExt/ojdb*.jar" >
 		</jar>
-		<move file="${basedir}/../swingScaViewer.zip" toFile="${basedir}/swingScaViewer.zip" /-->
+		<move file="${basedir}/../swingScaViewer.zip" toFile="${basedir}/swingScaViewer.zip" />
 
 	</target>
 
