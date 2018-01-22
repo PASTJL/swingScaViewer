@@ -2,13 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 5.4.2.2 (Linux)"/>
-	<meta name="created" content="2018-01-22T11:29:55.510413861"/>
-	<meta name="changed" content="2018-01-22T11:31:53.130362505"/>
-	<style type="text/css">
-		@page { margin: 2cm }
-	</style>
+	
 </head>
 <body lang="fr-FR" dir="ltr">
 <p style="margin-top: 0.42cm; page-break-after: avoid"><font face="Albany, sans-serif"><font size="4" style="font-size: 14pt"><b>SwingScaViewer</b><br/>
