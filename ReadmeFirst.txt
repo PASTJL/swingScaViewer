@@ -17,7 +17,10 @@ Utilities tools => date <=> dateInMillis, aggregation of files, regex expression
 
 Below for the impatients the rapid installation :
 2.1 Packaging
-Le packaging is done in a form of zip file  SwingScaViewer.zip which the root is swingScaViewer .
+You must create the packaging, by launching the antFreeBuild.xml task to create the archive.
+	If you can't, you must download the site and you can use the swingScaViewer-master.zip as described below. Renaming
+	swingScaViewer-master by swingScaViewer. Delete directories and files : .settings, ant, scalaTool, .gitignore that are nor necessary.
+ The root is swingScaViewer .
 2.2 Installation  of  SwingScaViewer
 2.2.1 Requirements
 A Sun  JDK 1.6.0+ must be installed on your desktop.
