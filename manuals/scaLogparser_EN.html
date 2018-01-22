@@ -1,0 +1,1286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Win32)">
+	<META NAME="AUTHOR" CONTENT="JL Pasturel">
+	<META NAME="CREATED" CONTENT="20120810;15522400">
+	<META NAME="CHANGEDBY" CONTENT="JL Pasturel">
+	<META NAME="CHANGED" CONTENT="20120910;9021800">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.western { font-family: "Albany", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "HG Mincho Light J"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial Unicode MS"; font-size: 14pt; font-style: italic }
+		H3.western { font-family: "Albany", sans-serif }
+		H3.cjk { font-family: "HG Mincho Light J" }
+		H3.ctl { font-family: "Arial Unicode MS" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H2 CLASS="western" ALIGN=CENTER>Summary</H2>
+<P ALIGN=LEFT><A HREF="#scalogParser"><FONT SIZE=4 STYLE="font-size: 16pt">ScaLogParser
+: Filling tabs</FONT></A></P>
+<P ALIGN=LEFT><A HREF="#enregTab"><FONT SIZE=4 STYLE="font-size: 16pt">ScaLogParser
+:Enregistrements tab</FONT></A></P>
+<P ALIGN=LEFT><A HREF="#ValuesTab"><FONT SIZE=4 STYLE="font-size: 16pt">ScaLogParser
+: Values tab</FONT></A></P>
+<P ALIGN=LEFT><A HREF="#pivotsTab"><FONT SIZE=4 STYLE="font-size: 16pt">ScaLogParser
+: Pivots tab</FONT></A></P>
+<P ALIGN=LEFT><A HREF="#buttons"><FONT SIZE=4 STYLE="font-size: 16pt">ScaLogParser
+: Buttons</FONT></A></P>
+<P ALIGN=LEFT><A HREF="#Plugin"><FONT SIZE=4 STYLE="font-size: 16pt">Plugins</FONT></A></P>
+<P ALIGN=LEFT><A HREF="#regexperl"><FONT SIZE=4 STYLE="font-size: 16pt">Examples
+of useful regex</FONT></A></P>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<H2 CLASS="western" STYLE="margin-top: 0cm; margin-bottom: 0cm; background: transparent">
+<BR>
+</H2>
+<H2 CLASS="western" STYLE="margin-top: 0cm; margin-bottom: 0cm; background: transparent"><A NAME="scalogParser"></A>
+<B>Menu &quot;ScaLogParser&quot; </B>
+</H2>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+<FONT SIZE=4>With this menu, you transform a log file to a csv file
+that can be graph with JfreeChart ( Menu Viewers)</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+<FONT SIZE=4>The Menu ScaLogParser ( in fact a Button) open a
+customized FileChooser in the directory
+%workspace/&lt;Project&gt;&lt;last_scenario&gt;/logs</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+<FONT SIZE=4>You have to choose a file.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_538a6de4.png" NAME="images6" ALIGN=LEFT WIDTH=922 HEIGHT=735 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+<FONT SIZE=4>There are 3 possibilities to config before parsing :</FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+	<FONT SIZE=4>with no template, ( ex-nilho) =&gt; ComboBox empty</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+	<FONT SIZE=4>with a local template, only valid for the current
+	project General Template unselected and a template chosen in the
+	ComboBox</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+	<FONT SIZE=4>with a general template, shared by all projects General
+	Template selected and a template chosen in the ComboBox</FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The screens below, show the more general configuration
+with no template</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>After clicking on OK Button, the screen below appears :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><A NAME="enregTab"></A>
+<BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_EN_html_462d2d8d.png" NAME="Image17" ALIGN=BOTTOM WIDTH=1520 HEIGHT=1020 BORDER=0></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>Parsing Start Date / Parsing End Date : new in version
+1.2.0 to set a beginning and an end date for parsing. It is useful
+when log files are large. See the table below for the format.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>In the TextArea at the top of the Windows, there are the
+first 20 lines of the log file to parse</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>In the buttom part, there is a Tabbed Pane with 4 tabs</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>The first tab has the functions :</B></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4>to define what is a record in the source file (
+	Beginning/End of record, Locale &hellip;)</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4>to retrieve the date of the record (explicitly or
+	implicitly).</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4>to define the format of the output CSV file( Date
+	format, separator)</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4>Automatic graph or not after parsing</FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>File In parameters :</B></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<TABLE WIDTH=941 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=159>
+	<COL WIDTH=355>
+	<COL WIDTH=401>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT STYLE="background: transparent"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Parameters</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><B>Signification</B></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><B>Example</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Path File In</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><SPAN STYLE="font-weight: normal">Full
+			path of the source file</SPAN><B>. </B>Automatically filled by
+			swingScaViewer when chosen</FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step of Aggr
+			in ms </B></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Measurement
+			period of result aggregation in millis-seconds. </FONT>
+			</P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">1000</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Start of
+			Enreg (Regex)</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Regular
+			expression ( Perl Regex) to find the beginning of the record.
+			<B>Mandatory.</B></FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>\d{4}-\d{2}-\d{2}</B></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>End of Enreg
+			(Regex)</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Regular perl
+			expression to catch the end of a record. If this field is empty,
+			it signifies that each line is a record.</FONT></P>
+			<P ALIGN=LEFT><BR>
+			</P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">If there is no
+			evident end of record pattern, you can set it the same pattern as
+			the pattern of the beginning of the record. swingScaViewer takes
+			care not to skip any record.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Regex
+			including enregs</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Regular perl
+			expression that permits to include all records that are
+			interesting.</FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Exclude feature
+			has priority over Include feature.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Regex
+			excluding enregs</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Regular perl
+			expression that permits to exclude some records that are not
+			interesting.</FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step within
+			enregs</B></FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>or regex for
+			step</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Used when
+			<B>Explicit Date</B> is unselected.</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Define the
+			increment relative to the parameter <B>fileIn.startDate </B><SPAN STYLE="font-weight: normal">under
+			2 ways. =&gt; </SPAN></FONT>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>regexp</B> <SPAN STYLE="font-weight: normal">a
+			perl regex </SPAN></FONT>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>val </B><SPAN STYLE="font-weight: normal">,
+			a value in between 2 records ( unit is given by </SPAN><B>Unit of
+			Step)</B></FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>(?![^=]=)\d+</B></FONT></P>
+			<P ALIGN=LEFT><BR><BR>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>val=1000</B></FONT></P>
+			<P ALIGN=LEFT><BR><BR>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>(*) </B><SPAN STYLE="font-weight: normal">See
+			more explanation after this table.</SPAN></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Locale
+			English</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Choice of the
+			Locale for File In ( for Date and representation of Double)</FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Selected (as
+			possible)</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Explicit
+			Date</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">If selected,
+			means that every record of the file contains an explicit date. If
+			not ( Implicit) the date must be computed.</FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Selected (as
+			possible)</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Start Date (
+			DateInMillis or Implicit case)</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Definition of a
+			beginning date with the Java DataFormat defined by the field <B>Java
+			Format of Date</B></FONT></P>
+			<P ALIGN=LEFT><BR>
+			</P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>1970/01/01
+			00:00:00</B></FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">( 0 of
+			TimeStamp)</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Used when
+			<B>Explicit Date</B> </FONT>
+			</P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">is unchecked,
+			if so an increment must be defined.</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">or when <B>Regex
+			of Date</B> <SPAN STYLE="font-weight: normal">is set </SPAN><B>to
+			dateInMillis </B><SPAN STYLE="font-weight: normal">with explicit
+			dates.</SPAN></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Unit Of Step
+			</B></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Unit of the
+			increment. Possible values are <B>s,ms,micros,nanos</B></FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Ms</B></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Regex of
+			Date</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Regular
+			expression ( perl regex) to catch the date. The date must be in
+			the first selected group.</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">In case of date
+			in timestamp in millis the pattern to set is <B>dateInMillis</B>.</FONT></P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>^([^:]+[^
+			]+)</B></FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>if
+			dateInMillis </B><SPAN STYLE="font-weight: normal">in</SPAN> <B>java
+			date format, </B><SPAN STYLE="font-weight: normal">you can put
+			here two regex separated by a blank to extract the date in millis
+			( the 2 regex must not contain a blank)</SPAN></FONT></P>
+			<P ALIGN=LEFT><BR><BR>
+			</P>
+			<P ALIGN=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>Java Format
+			of Date</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">Give the Java
+			DateFormat of the records of the log file.</FONT></P>
+			<P ALIGN=LEFT><BR>
+			</P>
+		</TD>
+		<TD WIDTH=401>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>[dd/MMM/yyyy:HH:mm:ss
+			Z]</B></FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">or</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>dateInMillis
+			or</B></FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt"><B>dateInMillis,&lt;mult&gt;</B></FONT></P>
+			<P ALIGN=LEFT STYLE="font-weight: normal"><FONT SIZE=3 STYLE="font-size: 13pt">mult=1000
+			if date is in seconds</FONT></P>
+			<P ALIGN=LEFT><FONT SIZE=3 STYLE="font-size: 13pt">The
+			dateInMillis format, compute date, starting with the beginning
+			date filled in the <B>Start Date ( DateInMillis or Implicit case)
+			</B><SPAN STYLE="font-weight: normal">parameter </SPAN></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Parsing Start Date</B></FONT></P>
+		</TD>
+		<TD WIDTH=355>
+			<P><FONT SIZE=3 STYLE="font-size: 13pt">The date for the beginning
+			of parsing </FONT>
+			</P>
+		</TD>
+		<TD WIDTH=401>
+			<P STYLE="font-weight: normal"><FONT SIZE=3 STYLE="font-size: 13pt">Format
+			must be :</FONT></P>
+			<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>yyyy/MM/dd HH:mm:ss</B></FONT></P>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=159>
+			<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Parsing End Date </B></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=355>
+			<P><FONT SIZE=3 STYLE="font-size: 13pt">The date for the end of
+			parsing </FONT>
+			</P>
+		</TD>
+		<TD WIDTH=401>
+			<P STYLE="font-weight: normal"><FONT SIZE=3 STYLE="font-size: 13pt">Format
+			must be :</FONT></P>
+			<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>yyyy/MM/dd HH:mm:ss</B></FONT></P>
+			<P><BR><BR>
+			</P>
+			<P STYLE="font-weight: normal"><FONT SIZE=3 STYLE="font-size: 13pt">If
+			beginning date &gt;= end date, there is no control for the date.
+			So with the two dates set by default to 1970/01/01 00:00:00, there
+			is no control of date.</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><B>File Out parameters :</B></P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=936 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=199>
+	<COL WIDTH=314>
+	<COL WIDTH=398>
+	<THEAD>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P ALIGN=CENTER><FONT SIZE=3 STYLE="font-size: 13pt"><B>Parameters</B></FONT></P>
+			</TD>
+			<TD WIDTH=314>
+				<P ALIGN=CENTER><FONT SIZE=3 STYLE="font-size: 13pt"><B>Signification</B></FONT></P>
+			</TD>
+			<TD WIDTH=398>
+				<P ALIGN=CENTER><FONT SIZE=3 STYLE="font-size: 13pt"><B>Example</B></FONT></P>
+			</TD>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Folder for Files Out</B></FONT></P>
+			</TD>
+			<TD WIDTH=314>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><SPAN STYLE="font-weight: normal">Full
+				path of the target directory files</SPAN><B>. </B>Automatically
+				filled by swingScaViewer when chosen</FONT></P>
+			</TD>
+			<TD WIDTH=398>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Field separator</B></FONT></P>
+			</TD>
+			<TD WIDTH=314>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Separator for the output
+				CSV file</FONT></P>
+			</TD>
+			<TD WIDTH=398>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">;</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Java Date Format out </B></FONT>
+				</P>
+			</TD>
+			<TD WIDTH=314>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Format DateFormat Java of
+				the csv generated file</FONT></P>
+			</TD>
+			<TD WIDTH=398>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>yyyy/MM/dd HH:mm:ss</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Locale English </B></FONT>
+				</P>
+			</TD>
+			<TD WIDTH=314>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Choice of the Locale for
+				File In ( for Date and representation of Double)</FONT></P>
+			</TD>
+			<TD WIDTH=398>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Selected (as possible)</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Generate AllAverages
+				Only</B></FONT></P>
+			</TD>
+			<TD WIDTH=314>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">When selected, only the
+				average of the values parsed are generated on a single file.</FONT></P>
+			</TD>
+			<TD WIDTH=398>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">The name of the file is
+				<B>allAverages.csv</B></FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><B>Advanced parameters :</B></P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=933 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=199>
+	<COL WIDTH=313>
+	<COL WIDTH=395>
+	<THEAD>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P ALIGN=CENTER><FONT SIZE=3 STYLE="font-size: 13pt"><B>Parameters</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P ALIGN=CENTER><FONT SIZE=3 STYLE="font-size: 13pt"><B>Signification</B></FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P ALIGN=CENTER><FONT SIZE=3 STYLE="font-size: 13pt"><B>Example</B></FONT></P>
+			</TD>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Numbers of Actors</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Number of actors ( akka
+				Actors) to treat the log file</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>2</B></FONT></P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>or nb cores * 2 ( if
+				hyperthreaded)</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Is start date</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">If selected, means that
+				the date is the date of the beginning of the request</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Selected</FONT></P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">depends of file logs.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Correction to date</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">When the first value is
+				expressed as a duration the 3 strategies are :</FONT></P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">if 0 =&gt; no
+				modification of the date</FONT></P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">if 1 =&gt; add the
+				duration to the date</FONT></P>
+				<P><A NAME="result_box"></A><FONT SIZE=3 STYLE="font-size: 13pt">if
+				-1 =&gt; subtract the duration to the date</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Select 0 or 1 or -1</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>View AllAverages after
+				parsing</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">If checked, at the end of
+				the parsing, the file allAverages.csv is graphed automatically.</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Checked/Unchecked</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Debug Mode</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">For debugging with a
+				little extract of the log file. There is a log trace in the
+				directory &lt;swingScaViewer_Home&gt;/logs</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Checked/Unchecked</B></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Exhaustive Pivots
+				Parsing</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Useful when 2 pivots have
+				inclusive regex for example </FONT>
+				</P>
+				<P><BR><BR>
+				</P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">GET\s/MyHome/</FONT></P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">GET\s/</FONT></P>
+				<P><BR><BR>
+				</P>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">If not checked, the URLs
+				matching the first regex are not parsed by the second regex</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Checked/Unchecked</B></FONT></P>
+				<P STYLE="font-weight: normal"><FONT SIZE=3 STYLE="font-size: 13pt">If
+				you are sure that regex are all not inclusive, unchecking is
+				faster for parsing.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=199>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Generate
+				Enregistrements to a File</B></FONT></P>
+			</TD>
+			<TD WIDTH=313>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt">Help also for debugging
+				to see if you correctly parse the record of the log file. Useful
+				when the record are spanned in several lines of the file.</FONT></P>
+			</TD>
+			<TD WIDTH=395>
+				<P><FONT SIZE=3 STYLE="font-size: 13pt"><B>Checked/Unchecked</B></FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The analysis of access-logs is based on the utilisation
+of regular expressions that are described in the JDK Javadoc. Look at
+Pattern class :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><A HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html"><FONT SIZE=4><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html</SPAN></SPAN></FONT></A></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<UL>
+	<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4>(*) The different forms of increment are :</FONT></P>
+	<UL>
+		<UL>
+			<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+			<FONT SIZE=4><B>&lt;regular expression&gt;</B></FONT></P>
+			<UL>
+				<UL>
+					<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+					<FONT SIZE=4>Give here a regular expression to match the
+					increment. The tool test regexp can help you ( see later in this
+					document).</FONT></P>
+				</UL>
+				<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+				<FONT SIZE=4><B>val=&lt;Constant value of the increment&gt;</B></FONT></P>
+			</UL>
+		</UL>
+	</UL>
+</UL>
+<UL>
+	<UL>
+		<UL>
+			<UL>
+				<UL>
+					<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+					<FONT SIZE=4>Set here the constant value of the increment, the
+					unit is given by the parameter <B>Unit of Step</B> <B>.</B> A To
+					be be used when there is no explicit date in the access logs and
+					you know the period of generating every record.</FONT></P>
+				</UL>
+			</UL>
+		</UL>
+	</UL>
+</UL>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal"><A NAME="ValuesTab"></A>
+<FONT SIZE=4><B>Value tab :</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_139ecb4a.png" NAME="images12" ALIGN=BOTTOM WIDTH=1505 HEIGHT=1173 BORDER=0></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The Value tab is divided in 5 columns :</FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4><B>Name Value </B>: in this column you set the name of
+	the value that you want to follow ( the name is free)</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4><B>First Regex / Function </B>: in this column, you set
+	the mean for extracting the value, there are two ways to extract a
+	value :</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4><B>regex</B> ( the default shown on the screen-shot
+	above). You put a regex to extract the value. If you are not able to
+	extract the value with this first regexp, you can apply a second
+	regexp( <B>Second Regex / Parameters</B>) to extract the final value
+	from the first matching.</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+	<FONT SIZE=4><B>function=&lt;nameOfClass&gt;</B></FONT></P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+		<FONT SIZE=4>It is an advanced feature, that permits to write a
+		kind of plug-in to swingScaViewer ( useful when the value can't be
+		extracted directly example : sum or difference of 2 values in a
+		record , computing GC throughput...).<B>(**)</B> See below the
+		whole explanation of this feature.</FONT></P>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+	<FONT SIZE=4><B>Second Regex / Parameters</B></FONT></P>
+	<UL>
+		<UL>
+			<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+			<FONT SIZE=4>A regex when needed as explained above or parameters
+			when using plugins/fuction</FONT></P>
+		</UL>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+	<FONT SIZE=4><B>Unit :</B></FONT></P>
+	<UL>
+		<UL>
+			<UL>
+				<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+				<FONT SIZE=4>the unit of the value extracted.</FONT></P>
+			</UL>
+		</UL>
+	</UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent"><FONT SIZE=4><B>Change
+	Scale</B> :</FONT></P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm; background: transparent"><FONT SIZE=4>permits
+		to change the scale of the value to match the unit chosen.</FONT></P>
+	</UL>
+</UL>
+<P STYLE="margin-left: 1.87cm; margin-bottom: 0cm; background: transparent">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4><B>(**) key word function</B> :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>It is an advanced topic and it needs to know programming
+in Scala language.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>We must write a S<B>cala class</B> with the default
+package, which has 2 methods where the prototypes are given below :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>def
+metInit(tab:Array[String]=null) </B></FONT></FONT></FONT>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>def retour(params:Array[String]):Double</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>There are examples in the directory
+<B>&lt;swingScaViewer_Home&gt;/myPlugins</B> . The classes (
+byte-code) must be put in the archive jar directory <B>:
+&lt;swingScaViewer_Home&gt;/myPlugins/myPlugins.jar.</B> This archive
+jar is also set in the classpath of the script <B>swingScaViewer.cmd</B>
+( .ksh).</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The return value of the method retour is a <B>Double </B>(
+it can be also Double.NaN, this case is treated).</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>In the column <B>First Regex / Function</B> <B>, </B>the
+name of the class is set (without the suffix .class) <B>:</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>function=Add2Values</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>In the field <B>Second Regex / Parameters</B>, we can
+set all the necessary parameters to execute the function. The
+parameters are separated by a separator defined in the first
+character of the field<B>. </B>Be care when there is blank in a
+parameter to choose another separator than a blank space<B>.</B> In
+case where no parameter is needed, you must set this field with
+<B>;dummy </B>to avoid an error.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>Example :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>,param1,parma2,param3</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4><B>,</B> is the separator, param1 to param3 the
+parameters.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The record is passed by default to the class, and it is
+the params(0) of the parameters of the function <B>retour</B>. The
+others parameters are added at params(1) and so on...</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>Tip :</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>When the name of a class begins by Conc, the function
+can be used in multi-threaded parsing. If one class does not begin by
+Conc in the Value Tab, the parsing is automatically mono-threaded (
+The field Nb of Actors is set automatically to 1)</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>Look at the pdf document &sect; Annexe part an example
+of function.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; page-break-before: always"><A NAME="pivotsTab"></A>
+<FONT SIZE=4><B>Pivots Tab :</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_m594b8618.png" NAME="images13" ALIGN=BOTTOM WIDTH=1487 HEIGHT=1073 BORDER=0></P>
+<P STYLE="margin-left: 1.87cm; margin-bottom: 0cm; background: transparent">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>What is a &ldquo;<B>pivot&rdquo;</B> ?</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>In a record, there are other information that are not
+numeric but permit to sort the values. Example URLS in Apache Access
+Logs, or other WAS access logs , a <B>Pivot </B>can be a specific
+pattern of URL as shown above. </FONT>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>This tab has 3 columns :</FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+	<FONT SIZE=4><B>Name :</B></FONT></P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+		<FONT SIZE=4>The free name of the Pivot</FONT></P>
+	</UL>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4><B>First Regex </B>: You put a full string value if you
+	can or a regexp to extract the value. If you are not able to extract
+	the value with this first regexp, you can apply a second regex(
+	<B>Second Regex)</B></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4><B>Second Regex </B>to extract the final Pivot from the
+	first matching.</FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><A NAME="result_box1"></A>
+<FONT SIZE=4><SPAN STYLE="font-style: normal"><B>Hint 1 : </B></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">If
+</SPAN></SPAN><SPAN STYLE="font-weight: normal">beforehand</SPAN> <SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">you
+have parsed this file with </SPAN></SPAN><SPAN STYLE="font-style: normal"><B>scaFileStats
+( see in the pdf document) </B></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">and
+saved the result table in a csv file in the logs directory, by right
+clicking in the table Pivot and choosing the csv file saved, the rows
+of the Pivot tab are automatically filled. After you can suppress,
+modify, insert other rows.</SPAN></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_6778df2.png" NAME="images16" ALIGN=BOTTOM WIDTH=1513 HEIGHT=1040 BORDER=0></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4><B>Hint 2 : </B>For the column <B>First Regex ,</B> if
+you use full String as possible (without pattern regex as \s\? ...) ,
+the treatment is faster.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>Principle of generated files in the csv directory</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>If you have 2 values in the Tab Value ( Duree and
+SizeRequest) and 6 Pivots in the tab Pivot, the 8 generated files are
+generated as :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_m39103d5c.png" NAME="images7" ALIGN=BOTTOM WIDTH=945 HEIGHT=388 BORDER=0></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4><B>fic_Duree_SizeRequest.csv</B> =&gt; global, without
+	Pivot</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+	<FONT SIZE=4>The last 6 files are the csv files where each file is
+	bound to a Pivot .</FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+	<FONT SIZE=4><B>allAverages.csv (</B> <SPAN STYLE="font-weight: normal">Contains
+	the average column of the 7 files above</SPAN><B>)</B></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>Help Tab:</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>This text. The file
+<B>&lt;swingScaViewer_Home&gt;/config/scaViewer.properties</B>
+permits to choose the lang=&gt; variable <B>scaviewer.lang.help</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal"><A NAME="buttons"></A>
+<FONT SIZE=4><B>Buttons : </B></FONT>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_4409f802.png" NAME="images8" ALIGN=LEFT WIDTH=982 HEIGHT=127 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>TestRegex:</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The button TestRegex permits to test regex in a Dialog
+box. See the Menu tool for more explanation.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>Save :</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The button Save saves the configuration and can be be
+reused for parsing another time</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT SIZE=4><B>SaveAsTemplate :</B></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The button <B>SaveAsTemplate </B>permits to save a
+template of the configuration that will be used as pattern for the
+same kind of access log file<B>. </B></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_4bd1805a.png" NAME="Image21" ALIGN=LEFT WIDTH=703 HEIGHT=302 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>We can save this template on the context of the project
+( <B>RadioButton General Template ?</B> Unchecked), or in a General
+Context ( can be used by others projects) when <B>RadioButton General
+Template ?</B> is checked<B>. </B></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4><B>Parse Logs</B> :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>The click on Parse Logs starts the Parsing :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_260be709.png" NAME="images9" ALIGN=LEFT WIDTH=1168 HEIGHT=529 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>This screen is shown at the end of the parsing, without
+graphing the allAverages.csv file because the radioButton <B>View
+AllAverages after parsing</B> was unchecked.</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal">
+<FONT SIZE=4>If the RadioButton <B>View AllAverages after parsing</B>
+is checked before launching the parsing, the <B>allAverages.csv</B>
+is graphed as shown below :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_m68f5d5e.png" NAME="images10" ALIGN=BOTTOM WIDTH=1339 HEIGHT=943 BORDER=0></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<H2 CLASS="western" STYLE="font-style: normal"><A NAME="Plugin"></A><B>Plugins
+/ functions</B></H2>
+<P STYLE="font-style: normal; font-weight: normal"><FONT SIZE=4>Below,
+the table describes, the the principle for using plugin / functions .</FONT></P>
+<P STYLE="font-style: normal; font-weight: normal"><FONT SIZE=4>Plug-ins
+can be added, in plugins folder and plugings/myPlugins.jar archive.
+Read the pdf manual that describes how to write a plugin</FONT></P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=32*>
+	<COL WIDTH=78*>
+	<COL WIDTH=82*>
+	<COL WIDTH=64*>
+	<THEAD>
+		<TR VALIGN=TOP>
+			<TH WIDTH=13%>
+				<P>Plugin name</P>
+			</TH>
+			<TH WIDTH=30%>
+				<P>Description</P>
+			</TH>
+			<TH WIDTH=32%>
+				<P>Parameters</P>
+			</TH>
+			<TH WIDTH=25%>
+				<P>Comments and Examples</P>
+			</TH>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=13%>
+				<P><FONT SIZE=4>ComputeHeapGC1</FONT></P>
+			</TD>
+			<TD WIDTH=30%>
+				<P><FONT SIZE=4>Parse the GC logs HotSpot, when the GC1 strategy
+				is set.</FONT></P>
+				<P><FONT SIZE=4>Mono-threaded</FONT></P>
+			</TD>
+			<TD WIDTH=32%>
+				<P><FONT SIZE=4>;&lt;the_nameOfValue&gt;</FONT></P>
+			</TD>
+			<TD WIDTH=25%>
+				<P><FONT SIZE=4>The nameOfValue is one of the values below:</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>BeforeGCHeapTotal</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>BeforeFullGCHeapUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>BeforeFullGCPermGenUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>BeforeYoungGCHeapUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>BeforeYoungGCPermGenTotal</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>BeforeYoungGCPermGenUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>NbYoungGC</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>NbFullGC</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>AfterYoungGCHeapTotal</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>AfterYoungGCHeapUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>AfterYoungGCPermGenTotal</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>AfterYoungGCPermGenUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>ParallelTime</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>AfterFullGCHeapUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fterFullGCPermGenUsed</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>DurationFullGC</FONT></P>
+				<P><FONT SIZE=4>DurationYoungGC</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=13%>
+				<P><FONT SIZE=4>ConcCompute2Values</FONT></P>
+			</TD>
+			<TD WIDTH=30%>
+				<P><FONT SIZE=4>Compute 2 values extracted from a record</FONT></P>
+				<P><FONT SIZE=4>2 regex to extract each value.</FONT></P>
+				<P><FONT SIZE=4>Op can be &ldquo;+&rdquo;,&rdquo;-&rdquo;,&rdquo;*&rdquo;,&rdquo;/&rdquo;</FONT></P>
+				<P><FONT SIZE=4>Multi-threaded</FONT></P>
+			</TD>
+			<TD WIDTH=32%>
+				<P><FONT SIZE=4>;&lt;regexp1-value1&gt;;&lt;regexp2-value1&gt;;&lt;regexp1-value2&gt;;&lt;regexp2-value2&gt;;&lt;op&gt;</FONT></P>
+			</TD>
+			<TD WIDTH=25%>
+				<P><FONT SIZE=4>;value1=\d+\.\d+;\d+\.\d+;value2=\d+\.\d+;\d+\.\d+;+</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=13%>
+				<P><FONT SIZE=4>ConcCountItems</FONT></P>
+			</TD>
+			<TD WIDTH=30%>
+				<P><FONT SIZE=4>Count items in a record</FONT></P>
+				<P><FONT SIZE=4>Multi-threaded</FONT></P>
+			</TD>
+			<TD WIDTH=32%>
+				<P><FONT SIZE=4>;&lt;regexpItem&gt;</FONT></P>
+			</TD>
+			<TD WIDTH=25%>
+				<P><FONT SIZE=4>;locked</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=13%>
+				<P><FONT SIZE=4>ConcTuxCloptr</FONT></P>
+			</TD>
+			<TD WIDTH=30%>
+				<P><FONT SIZE=4>Example of customized plug-in :</FONT></P>
+				<P><FONT SIZE=4>Retrieve the time duration of Tuxedo services
+				when the option Clopt -r is set</FONT></P>
+				<P><FONT SIZE=4>(Tuxconfig)</FONT></P>
+				<P><FONT SIZE=4>Need a dummy parameter </FONT>
+				</P>
+			</TD>
+			<TD WIDTH=32%>
+				<P><FONT SIZE=4>;dummy</FONT></P>
+			</TD>
+			<TD WIDTH=25%>
+				<P><FONT SIZE=4>;dummy</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=13%>
+				<P><FONT SIZE=4>TraiterHotspot5And6</FONT></P>
+			</TD>
+			<TD WIDTH=30%>
+				<P><FONT SIZE=4>Parse the GC logs HotSpot, when the Parallel or
+				CMS strategy is set.</FONT></P>
+				<P><FONT SIZE=4>Mono-threaded</FONT></P>
+			</TD>
+			<TD WIDTH=32%>
+				<P><FONT SIZE=4>;&lt;the_nameOfValue&gt;</FONT></P>
+			</TD>
+			<TD WIDTH=25%>
+				<P><FONT SIZE=4>The nameOfValue is one of the values below::</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizeYoungGenerationBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizeYoungGenerationAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizeOldGenerationBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizeOldGenerationAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizeHeapBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizeHeapAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizePermGenBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sizePermGenAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>minorGCDuration</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>throughput</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCDuration</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>cmsConcurrentMarkDuration</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>cmsConcurrentSweep</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>cmsConcurrentPreclean</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCSizeYoungGenerationBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCSizeYoungGenerationAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCSizeOldGenerationBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCSizeOldGenerationAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCSizeHeapBefore</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>fullGCSizeHeapAfter</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>sysTimeSpent</FONT></P>
+				<P STYLE="margin-bottom: 0cm"><FONT SIZE=4>userTimeSpent</FONT></P>
+				<P><FONT SIZE=4>realTimeSpent</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT SIZE=4>Below
+the source of ConcCompute2Values :</FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: #ccffff"><FONT FACE="Courier New, monospace"><FONT SIZE=2><B>/*Copyright
+2012 Jean-Louis PASTUREL <BR>*<BR>* Licensed under the Apache
+License, Version 2.0 (the &quot;License&quot;);<BR>* you may not use
+this file except in compliance with the License.<BR>* You may obtain
+a copy of the License at<BR>*<BR>*
+http://www.apache.org/licenses/LICENSE-2.0<BR>*<BR>* Unless required
+by applicable law or agreed to in writing, software<BR>* distributed
+under the License is distributed on an &quot;AS IS&quot; BASIS,<BR>*
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<BR>* See the License for the specific language governing
+permissions and<BR>* limitations under the License.<BR>*/<BR>class
+ConcCompute2Values {<BR>def metInit(tab:Array[String]=null) {<BR>//
+To reinitialise static variable if necessary<BR>// Nothing to do
+here<BR>}<BR><BR>/**<BR>*tabStr(0) is the record to be treated.
+Afterwards the regex by tuple of 2 items for an extraction in two
+phases<BR>* regex tabStr(1) and tabStr(2) to extract the first
+value<BR>* regex tabStr(3) and tabStr(4) to extract the second
+value<BR>* tabStr(5) is the operand (&ldquo;+&rdquo;,&rdquo;-&rdquo;,&rdquo;*&rdquo;,&rdquo;/&rdquo;)
+<BR>* @param tabStr<BR>* @return<BR>*/<BR>def
+retour(tabStr:Array[String]):Double=<BR>{<BR><BR>var
+retour=Double.NaN<BR><BR>// extract first value<BR>var
+regex1=tabStr(1).r<BR>var ext1=regex1.findFirstIn(tabStr(0))<BR><BR>var
+val1=0D<BR>var val2=0D<BR>if (None != ext1) {<BR>//
+println(&quot;ext1Val1=&quot;+ext1.get)<BR>val regex2=tabStr(2).r<BR>val
+ext2=regex2.findFirstIn(ext1.get)<BR>if (None != ext2) {<BR>val1 =
+ext2.get.toDouble<BR>} else {<BR>return Double.NaN<BR>}<BR>} else
+{<BR>return Double.NaN<BR>}<BR><BR>// extract second
+value<BR>regex1=tabStr(3).r<BR>ext1=regex1.findFirstIn(tabStr(0))<BR><BR>if
+(None != ext1) {<BR>val regex2=tabStr(4).r<BR>val
+ext2=regex2.findFirstIn(ext1.get)<BR>if (None != ext2) {<BR>val2 =
+ext2.get.toDouble<BR>} else {<BR>return Double.NaN<BR>}<BR>} else
+{<BR>return Double.NaN<BR>}<BR>//println (&quot;tabStr(0)
+=&quot;+tabStr(0))<BR>//println (&quot;val1=&quot;+val1+&quot;
+;val2=&quot;+val2)<BR>// return the result of the operation<BR>tabStr(5)
+match {<BR>case &quot;+&quot; =&gt; val1 + val2<BR>case &quot;-&quot;
+=&gt; val1-val2<BR>case &quot;/&quot; =&gt; if (val2 !=0) val1 / val2
+else Double.NaN<BR>case &quot;*&quot; =&gt; val1 * val2<BR>case _ =&gt;
+Double.NaN<BR><BR><BR>}<BR>}<BR><BR>}</B></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<H2 CLASS="western" STYLE="margin-top: 0cm; margin-bottom: 0cm; background: transparent; font-style: normal"><A NAME="regexperl"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=4>Examples of
+Java/Perl regex</FONT></FONT></H2>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>Below
+some examples of regex to extract datas from a line:</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-left: 2cm; margin-bottom: 0cm; background: #ccffff"><FONT FACE="Courier New, monospace"><FONT SIZE=3><B>10.170.227.191
+- - [21/Jan/2008:18:55:26 +0100] &quot;POST
+/synthetic/services/ConsommationPort HTTP/1.1&quot; 200 2433 &ndash;
+5087</B></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<H3 CLASS="western">Regexp : <FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>^\d+\.\d+\.\d+\.\d+</B></FONT></FONT></H3>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>That
+must be read from the beginning of the line ( character <B>^ </B>)
+and after one or several numbers followed by a dot ( <B>\d+\.</B>) ,
+repeated thre times and terminated by one or more number ( <B>\d+</B><SPAN STYLE="font-weight: normal">).</SPAN></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent; font-weight: normal">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=4>The dot character is
+escaped because it has a regex signification.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_46ef9a49.png" NAME="Image64" ALIGN=MIDDLE WIDTH=756 HEIGHT=290 BORDER=0>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT SIZE=4>so
+you extract the IP address at the beginning of the line.</FONT></P>
+<H3 CLASS="western">Regexp : <B>\[[^\]]+\]</B></H3>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>That
+must be read from the first opening square bracket ( <B>\[ </B>) that
+must be escaped because it has a regex signification , and after we
+take all characters that <B>are not</B> closing square bracket, note
+that in this context, the ^ character is the negation operator when
+it is not the first character of the regex=&gt; ( <B>[^\]]+ </B>) ,
+and the matching is terminated by the closing square bracket ( <B>\]
+</B>) </FONT></FONT>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>This
+regex extracts the date from the line :</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_m7585efa1.png" NAME="Image65" ALIGN=BOTTOM WIDTH=759 HEIGHT=288 BORDER=0></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>Note
+: Be care of the difference of signification of the ^ character when
+it is the first character of the regex, and when it is somewhere
+else.</FONT></FONT></P>
+<H3 CLASS="western">Regexp : &quot;<B>[^&quot;]+&quot;\s+\d{3}</B></H3>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>That
+must be read from the first double quotation marks ( <B>&quot; </B>)
+and after all characters that are not double quotation marks ( <B>[^&quot;]+</B>
+) , after a double quotation mark ( <B>&quot; </B>) , after one or
+more space or tab characters ( <B>\s+</B> ), and terminated by 3
+digits ( <B>\d{3}</B> ) .</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>\d{3}</B>
+)</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>this
+regex extracts the URL and the http status of the regex from the line
+:</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_m5e202ab0.png" NAME="Image66" ALIGN=BOTTOM WIDTH=868 HEIGHT=306 BORDER=0></P>
+<H3 CLASS="western">Regexp : <B>\s+\d+$</B></H3>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>To
+be read, beginning from the end of the line ( last character is <B>$</B>
+), before the end of the line one or more digits ( <B>\d+</B> ) and
+before one or more space or tab characters ( <B>\s+ </B>) .</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>this
+regexp extract the last number in the line, for this Apache logs, it
+corresponds to the duration of the request in micros-seconds.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><IMG SRC="scaLogparser_html_3dfe42eb.png" NAME="Image67" ALIGN=BOTTOM WIDTH=867 HEIGHT=274 BORDER=0></P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; background: transparent"><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,164 @@
+<project name="scaViewer" basedir="../" default="deploy">
+
+	<!-- Project settings -->
+	<property name="projectLocation" value="${basedir}" />
+	<property name="project.distname" value="scaViewer" />
+	<property name="scaViewer.build.dir" value="${projectLocation}/build" />
+
+
+	<available property="D_target" file="${basedir}" />
+
+	<!-- Local system paths -->
+	<property file="${basedir}/ant/build${os.name}.properties" />
+
+	<echo message="os.name=${os.name}" />
+	<echo message="basedir = ${basedir}" />
+	<property name="lib.dir" value="${basedir}/libExt" />
+
+	<target name="init1" if="D_target">
+		<echo message="Passe dans D_Target" />
+		<property name="scalaTool.dir" value="${basedir}/scalaTool" />
+		<property name="scala-library.jar" value="${basedir}/libExt/scala-library.jar" />
+		<property name="scala-swing.jar" value="${basedir}/libExt/scala-swing_2.12-2.0.0.jar" />
+		<property name="projectLocation" value="${basedir}" />
+
+		<echo message="projectLocation D_Target = ${projectLocation}" />
+		<property name="src" value="${projectLocation}/src" />
+		<property name="lib.dir" value="${projectLocation}/libExt" />
+
+		<property name="dist" value="${projectLocation}/dist" />
+		<echo message="projectLocation = ${projectLocation}" />
+
+		<path id="compile.classpath">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${scalaTool.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${scala-library.jar}" />
+			<pathelement location="${scala-swing.jar}" />
+		</path>
+		<echo message="nettoyage myPlugins" />
+		<delete>
+			<fileset dir="${basedir}/myPlugins">
+				<include name="**/*.class" />
+				<include name="**/*.jar" />
+				<exclude name="**/*.scala" />
+			</fileset>
+		</delete>
+		
+
+		<taskdef resource="scala/tools/ant/antlib.xml">
+			<classpath>
+				<pathelement location="${basedir}/libExt/scala-reflect.jar" />
+				<pathelement location="${scalaTool.dir}/scala-compiler.jar" />
+				<pathelement location="${scala-library.jar}" />
+			</classpath>
+		</taskdef>
+	</target>
+
+
+
+
+
+	<echo message="Classpath=${classpath}" />
+	<!-- define your folder for deployment -->
+
+
+
+	<!-- Check timestamp on files -->
+	<target name="prepare" depends="init1">
+		<tstamp />
+	</target>
+
+
+
+	<!-- Normal build of  application -->
+	<target name="compile" depends="prepare">
+		<delete dir="${scaViewer.build.dir}" />
+		<mkdir dir="${scaViewer.build.dir}" />
+		<echo message="target=compile src=${src} destDir=${scaViewer.build.dir}" />
+		<scalac encoding="iso8859-1" srcdir="${src}" logging="none" destdir="${scaViewer.build.dir}" classpathref="compile.classpath" deprecation="yes">
+
+			<include name="**/*.scala" />
+
+
+
+
+
+
+		</scalac>
+
+		<scalac encoding="iso8859-1" srcdir="${basedir}/myPlugins" logging="none" destdir="${basedir}/myPlugins" classpathref="compile.classpath" deprecation="yes">
+
+			<include name="**/*.scala" />
+
+
+
+
+
+
+		</scalac>
+
+
+	</target>
+
+	<target name="deploy" depends="compile">
+		<delete file="${basedir}/swingScaViewer.zip" />
+		<jar destfile="${basedir}/swingScaViewer.jar" update="false" basedir="${basedir}/build" includes="**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+
+				<attribute name="Main-Class" value="com.jlp.scaviewer.ui.SwingScaViewer" />
+
+			</manifest>
+
+
+		</jar>
+		<jar destfile="${basedir}/myPlugins/myPlugins.jar" update="false" basedir="${basedir}/myPlugins" includes="**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+
+
+
+			</manifest>
+
+
+		</jar>
+		<delete>
+			<fileset dir="${basedir}/myPlugins">
+				<include name="**/*.class" />
+
+				<exclude name="**/*.scala" />
+			</fileset>
+		</delete>
+		
+		<delete>
+			<fileset dir="${basedir}/logs">
+				<include name="**/scaViewer.log" />
+
+
+			</fileset>
+		</delete>
+
+		<!--jar destfile="${basedir}/../swingScaViewer.zip" basedir="${basedir}" update="false"  includes="**/swingScaViewer.jar **/config/*.* **/libExt/*.* **/Licenses/*.* **/logs/*.* **/manuals/*.* **/myPlugins/*.* **/uploads/**/*.* **/scripts/*.* **/myCommands/**/*.* **/libCommands/*.* **/templates/**/*.*" excludes="**/manuals/*.odt **/docs/*.* **/docs/** **/libCommands/confxpert.jar **/libExt/mysql*.* **/libExt/ojdb*.jar" >
+		</jar>
+		<move file="${basedir}/../swingScaViewer.zip" toFile="${basedir}/swingScaViewer.zip" /-->
+
+	</target>
+
+
+
+	<!-- Remove classes directory for clean build -->
+	<target name="clean" description="Prepare for clean build">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+
+	</target>
+
+
+
+
+
+</project>

@@ -1,0 +1,17 @@
+
+
+<!-- Foot Mode Debug  -->
+		<weaver options="-Xlint:ignore -verbose -showWeaveInfo -debug -Xset:overWeaving=true,typeDemotion=true,weaveJavaPackages=true,weaveJavaxPackages=true,typeDemotionDebug=true">
+			<exclude within="jlp.perf..*"/>
+			<exclude within="org.ow2.util..*"/>
+		  <exclude within="jlp.aspectsJMX..*"/>
+			<exclude within="jlp.aspects..*"/>
+		  <exclude within="org.hibernate.type.ComponentType"/>
+			<exclude within="*..*EnhancerByCGLIB*..*"/>
+			<exclude within="*..*.*$$EnhancerByCGLIB$$*"/>
+			<exclude within="*..*.*$$FastClassByCGLIB$$*"/>
+			<exclude within="*..*$Proxy*"/>
+			<exclude within="$Proxy*"/>
+			<exclude within="org.apache.juli..*"/>
+		</weaver>
+</aspectj>	

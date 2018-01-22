@@ -1,0 +1,8 @@
+Select username, MAX(ACTIVES) ACTIVES, MAX(INACTIVES) INACTIVES , MAX(ACTIVES)+ MAX(INACTIVES) TOTAL from
+(Select  username, count(*) ACTIVES , 0   INACTIVES from V$Session where STATUS='ACTIVE'
+group by username
+
+UNION
+Select username,0 ACTIVES ,count(*) INACTIVES  from V$Session where STATUS='INACTIVE'
+group by username)
+group by username

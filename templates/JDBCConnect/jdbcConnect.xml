@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jdbcConnect>
+	<Commands>
+		<Command>bash</Command>
+		<Command></Command>
+		<Command>"JDBCConnect"</Command>
+		<DateDeb>Now</DateDeb>
+		<Duration>24h</Duration>
+	</Commands>
+
+	<Requests>
+		<Request>
+			<IdCnx></IdCnx>
+			<GenLoc></GenLoc>
+			<Sql></Sql>
+			<Frequency></Frequency>
+			<FileName></FileName>
+		</Request>
+	</Requests>
+
+	<Connections>
+		<Connection>
+			<IdCnxCon></IdCnxCon>
+			<Editor></Editor>
+			<IpServer></IpServer>
+			<IpPort></IpPort>
+			<IdDb></IdDb>
+			<Login></Login>
+			<Password></Password>
+		</Connection>
+	</Connections>
+
+</jdbcConnect>

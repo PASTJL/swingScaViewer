@@ -1,0 +1,488 @@
+################################################# 
+21/01/2018 : Version 1.3.55
+Upgrading :
+	- compiling with Java 8 / scala 2.12.4
+	- updating  akka-actors
+ ##################################################
+
+################################################# 
+20/12/2014 : Version 1.3.54
+Tools PHP :
+ - PHP-Tools  File Chooser
+ 	set the 3 Dialogs modal. They stay on top until dispose or cancel
+##################################################
+  
+  
+################################################# 
+19/12/2014 : Version 1.3.53
+Tools PHP :
+ - PHP phptools.zip /phptools.tar.gz. 
+ Remove footer scripts replaced by callback functions (register_shutdown_function)	
+##################################################
+  
+
+################################################# 
+10/12/2014 : Version 1.3.52
+Tools PHP :
+ - Improving look and feel : more colors
+ - Add Drill down similar to php native xhprof tool for the 3 kinds of logs		
+##################################################
+  
+
+################################################# 
+05/12/2014 : Version 1.3.51
+Tools PHP : Xhprof profiler
+ - correcting bug ( results are the same as native tools : xhprof views)
+ - improving view in tree / tables
+##################################################
+  
+
+################################################# 
+30/11/2014 : Version 1.3.50
+- Tools PHP : Parser for lightly customized xhprof profiler logs
+##################################################
+  
+
+################################################# 
+27/11/2014 : Version 1.3.49
+- GC HotSpot 7 : bug with new parameter ParOldGen
+##################################################
+  
+
+################################################# 
+20/11/2014 : Version 1.3.48
+- Tools PHP Xdebug/Profile 
+##################################################
+  
+
+################################################# 
+24/10/2014 : Version 1.3.47
+- Tools PHP Xdebug/Trace format1 => Csv file
+- StatFile => bug tracking date Format
+##################################################
+  
+
+################################################# 
+22/09/2014 : Version 1.3.46
+GClogs JDK 6 IBM R26   ParseAndView: 
+		- add 6 metrics GC optavgpause ( concurrent)
+##################################################
+  
+
+################################################# 
+08/09/2014 : Version 1.3.45
+GClogs JDK5-6-7 HotSpot CMS  ParseAndView: 
+		- add 3 metrics GC CMS
+##################################################
+  
+
+################################################# 
+03/09/2014 : Version 1.3.44
+GClogs JDK7 parallel/CMS  ParseAndView: 
+		- bug :  regex modified \s*
+##################################################
+  
+
+################################################# 
+07/03/2014 : Version 1.3.43
+scaLogParser  : 
+		- bug :  add a correct unit at "sum" value in csv files
+##################################################
+  
+
+################################################# 
+27/02/2014 : Version 1.3.42
+filestats  : 
+		- new feature detectDateFormat with enreg multilines
+		it is now possible to parse if date / pivot/and value are in the same line
+##################################################
+  
+
+################################################# 
+17/02/2014 : Version 1.3.41
+ScaLogParser  : 
+		- bug location filtered file in gzip mode
+##################################################
+  
+
+################################################# 
+13/02/2014 : Version 1.3.40
+ScaFileStats  : 
+		- bug Threads still alive after exception
+##################################################
+  
+
+################################################# 
+06/02/2014 : Version 1.3.39
+ScaLogParser / Plugins : 
+		- bug sometimes heapBefore/After absent with GC HotSpot 
+##################################################
+  
+
+################################################# 
+03/02/2014 : Version 1.3.38 
+scaCharting : Improve toolTip when zooming
+ScaLogParser / Plugins : 
+		- improve HotSpot GC logs analysis 
+		- improve performance log parsing when "allAverageSeul=true"
+##################################################
+  
+################################################# 
+23/01/2014 :Version 1.3.37 
+ScaLogParser : Improve scale handling when charting
+#################################################
+ 
+################################################# 
+18/01/2014 :Version 1.3.36 
+ScaLogParser : adding delete rows in Value tab. 
+#################################################
+
+#################################################
+11/11/2013: Version 1.3.35
+Csv Viewer :
+- Improving behaviour of Buttons Align-/Align+ with Sampling
+#################################################
+
+#################################################
+15/10/2013 : Version 1.3.34
+-  GC logs  : correcting bug date  ParseAndView menu
+- + some minor corrections
+#################################################
+
+
+#################################################
+03/09/2013 : Version 1.3.33
+-  GC logs  : adding JVM IBM 1.6 R26 for ParseAndView menu
+- + some minor corrections
+#################################################
+
+#################################################
+25/06/2013 : Version 1.3.32
+-  GC logs  : Regression fatal bug in HotSpot GC logs analysis
+#################################################
+
+#################################################
+20/06/2013 : Version 1.3.31
+-  GC logs  : Improving JRockit GC logs analysis
+#################################################
+
+#################################################
+12/06/2013 : Version 1.3.30
+-  GC logs  :  Bug parsing GC HotSpot Light 
+- SSh Cmd Series bug Download repository
+#################################################
+
+#################################################
+15/04/2013 : Version 1.3.29
+-  GC logs  :  Improving parsing ( memThroughput) 
+#################################################
+
+#################################################
+09/04/2013 : Version 1.3.28
+-  scaLogParser : Correct Timezone 
+     when explicit date are wrong
+#################################################
+
+
+#################################################
+09/04/2013 : Version 1.3.27
+-  CsvViewer : Improving behaviour of the table
+              ( Short Name)
+#################################################
+
+
+#################################################
+06/04/2013 : Version 1.3.26
+-  sshDownload : add download directories using a java jar archive
+			( useful, when a large number of little files)
+- scaLogParser : bug parsing GC logs HotSpot with French decimal values
+#################################################
+
+
+#################################################
+31/03/2013 : Version 1.3.25
+-  scaLogParser : Correct bug cleaning csv directories
+#################################################
+
+
+#################################################
+23/03/2013 : Version 1.3.24
+-  scaLogParser : Correct bug downloading directories
+- migration to scala 2.10.1 and akka-actors 2.1.2
+#################################################
+
+
+#################################################
+15/03/2013 : Version 1.3.23
+-  Others minor Swing improvements
+#################################################
+
+
+#################################################
+09/03/2013 : Version 1.3.22
+- SSH connections : Bug => threads not killed
+#################################################
+
+
+#################################################
+19/02/2013 : Version 1.3.21
+- Several minor Swing improvements
+#################################################
+
+
+#################################################
+14/02/2013 : Version 1.3.20
+- ParserAndView :Possibility to date the beginning of records
+			when the name of the file is not stamped
+#################################################
+
+
+
+#################################################
+13/02/2013 : Version 1.3.19
+- Cnx JSch : bug Jsch exception 
+		 improving the connection of the session
+#################################################
+
+
+#################################################
+12/02/2013 : Version 1.3.18
+- ParseAndView : Adding ThreadDump automatic parsing
+- Tools Menu : adding menuitem for cleaning csv directories
+- Manuals : updating User Guide
+#################################################
+
+#################################################
+06/02/2013 : Version 1.3.17
+- ParseAndView Improving automatic choice
+#################################################
+
+
+#################################################
+18/01/2013 : Version 1.3.16
+- myPlugins : GC JROckit ( monolithic)
+#################################################
+
+
+#################################################
+10/01/2013 : Version 1.3.15
+- LogParser, bug  generation csv (SimpleDateFormat)
+#################################################
+
+
+#################################################
+04/01/2013 : Version 1.3.14
+- Csv viewer can load gzip file 
+#################################################
+
+
+#################################################
+21/12/2012 : Version 1.3.13
+- AspectsJ tool version 2.1.0 
+	( added 10 GenericAspects for JMX and  csv logs tracing)  
+#################################################
+
+
+#################################################
+19/12/2012 : Version 1.3.12
+- Bug StatFile => Null pointer exception when file are too little
+- GC Logs HotSpot => Missed a value  
+#################################################
+
+
+#################################################
+29/11/2012 : Version 1.3.11
+- Bug SSH menu => Download didn't take care of the value of "howmany". 
+#################################################
+
+
+#################################################
+15/11/2012 : Version 1.3.10
+- Correcting Upload/Chain Command in new upload/download ssh menu. 
+#################################################
+
+#################################################
+26/10/2012 : Version 1.3.9
+- Refactoring upload/download ssh menu. 
+	add possibility to chain :
+		upload file and scripts /execute scripts /download result of scripts
+#################################################
+
+
+#################################################
+17/10/2012 : Version 1.3.8
+- Adding parsing JVMIBM GC logs
+- improving tool sorting lines in a file 
+#################################################
+
+
+#################################################
+09/10/2012 : Version 1.3.7
+- yet another bug scaViewer removing a line in the table 
+	and sampling : now it correctly runs 
+#################################################
+
+
+#################################################
+08/10/2012 : Version 1.3.6
+- bug scaViewer color in table different than series 
+     after removing a line in the table  
+#################################################
+
+
+#################################################
+07/10/2012 : Version 1.3.5
+- improving behaviour of scaViewer ( remove useless Axis)
+#################################################
+
+
+#################################################
+03/10/2012 : Version 1.3.4
+- correct bug scala swing to run with Linux
+#################################################
+
+
+#################################################
+28/09/2012 : Version 1.3.3
+- plugin GC1 logs
+- correct bug scaviewer
+- little improves
+#################################################
+
+
+#################################################
+24/09/2012 : Version 1.3.2
+-Tool/Sort Line In file Menu : new feature
+	to sort lines in a file using composite indexes
+- Tool/ Hex<=>Dec  Menu : new feature
+	translate Decimal number to hexadecimal and
+		hexadecimal number to decimal number
+- Adding Aspects to Perf with AspectJ Menu
+#################################################
+
+
+#################################################
+17/09/2012 : Version 1.3.1
+- My Commands Menu : new feature
+	to launch external programs ( Java or Native)
+- jlpApis / SSH download : bug dir when howmany=0
+#################################################
+
+
+#################################################
+16/09/2012 : Version 1.3.0
+- Open Project / Create new test scenario : Adding  start/end date 
+	to improve parsing
+- scaLogParser : improve parsing file logs when the record is span
+	 on several lines
+- jlpApis / SSH : improving Download/Upload character joker *, 
+		and <server> pattern
+#################################################
+
+
+#################################################
+09/09/2012 : Version 1.2.0
+- scalogpaser : Adding a filter for parsing with a beginning/end date
+	useful when the log files are very large
+#################################################
+
+#################################################
+06/09/2012 : Version 1.1.10
+- Modification jlpApis ( Download Files with adding no prefix)
+#################################################
+
+#################################################
+04/09/2012 : Version 1.1.9
+- Migration version 1.7 of AspectJ
+- Add an AspectJ to synchronize non synchronized method		
+#################################################
+
+
+#################################################
+03/09/2012 : Version 1.1.8
+- Bug : scaChartingListener reactions: create a companion Object
+		to avoid duplicate reactions		
+- Bug : CsvViewer create a button Align+ to shift series to the right. 
+		Align became Align-
+#################################################
+
+
+#################################################
+01/09/2012 : Version 1.1.7
+- Bug : scaLogParser correct unit of Count item in csv files 
+		set to req
+- Bug : CsvViewer misMatch between sum and sumTotal in the table
+		 when zooming in the chart
+#################################################
+
+
+#################################################
+01/09/2012 : Version 1.1.6
+- Bug : scaLogParser activate button regex
+- CsvViewer : add button Align, to align series 
+	on X Axis to help for comparisons
+#################################################
+
+
+#################################################
+31/08/2012 : Version 1.1.5
+- Bug : statFile detecterDebutFinEstimation None get
+#################################################
+
+
+#################################################
+30/08/2012 : Version 1.1.4
+- Viewer/directView improving read last line of a file
+- Bug : Class CsvFileNew count fields of a line
+#################################################
+
+
+#################################################
+28/08/2012 : Version 1.1.3
+- Correct bug opening project where length of the name is less than 5
+#################################################
+
+
+#################################################
+27/08/2012 : Version 1.1.2
+- jlpApis  : 
+	-- Correction bug  report html,
+	--  improving behaviour when error on ssh access
+	--  improving use of pattern * in  ls unix command ( ssh access)
+- scaLogparser Correction bug generation AllAvverage.csv
+#################################################
+
+
+#################################################
+17/08/2012 : Version 1.1.1
+- ScaLogParser Correct bug to avoid NaN values in csv Files
+- Migration to akka Actor 2.0.3 and typesafe config-0.3.1.jar 
+#################################################
+
+#################################################
+15/08/2012 : Version 1.1.0
+- Removing joda-time ( dateFormat parsing 
+		more suitable for some patterns in JDK)
+- Tool to horodate every line of a log file
+- Improving features of reports menus
+#################################################
+
+
+#################################################
+05/07/2012 : Version 1.0.2
+- correcting bug value req/s in scaLogParser
+#################################################
+
+
+#################################################
+04/07/2012 : Version 1.0.1
+- adjusting the ui of scaLogParser ( step/regex)
+- correcting bug when java format date is "dateInMillis"
+- modify the default root of the tree of the CSVViewer
+#################################################
+
+
+#################################################
+30/05/2012: Version 1.0.0
+ No bug corrected
+#################################################

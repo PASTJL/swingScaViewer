@@ -1,0 +1,11 @@
+/tests/
+/build/
+/data/
+*.htlm
+/docs/
+/libExt/mysql*
+/libExt/ojdbc*
+/manuals/*.odt
+/libCommands/confxpert.jar
+/swingScaViewer.zip
+

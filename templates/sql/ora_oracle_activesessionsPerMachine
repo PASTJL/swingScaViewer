@@ -1,0 +1,20 @@
+Select machine,username, MAX(ACTIVES) ACTIVES, MAX(INACTIVES) INACTIVES , MAX(ACTIVES)+ MAX(INACTIVES) TOTAL from
+				(Select  machine,username, count(*) ACTIVES , 0   INACTIVES from V$Session where status='ACTIVE'
+				and  username is not null
+				group by machine,username 
+			UNION
+			Select machine, username,0 ACTIVES ,count(*) INACTIVES  from V$Session where status='INACTIVE'
+				and  username is not null
+				group by machine,username
+			UNION
+				Select  'ALLmachines' machine  , username,0 ACTIVES ,count(*) INACTIVES  from V$Session where STATUS='INACTIVE'
+				and  username is not null
+				group by username
+			UNION
+				Select  'ALLmachines' machine  , username,count(*) ACTIVES , 0 INACTIVES  from V$Session where STATUS='ACTIVE'
+				and  username is not null
+				group by username	
+				
+				
+				)
+				group by machine,username

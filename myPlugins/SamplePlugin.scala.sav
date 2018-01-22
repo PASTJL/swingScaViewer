@@ -1,0 +1,28 @@
+class SamplePlugin {
+  
+  def init {
+    // To reinitialise static variable
+     SamplePlugin.count=0
+  }
+  def retour(tabStr:Array[String]):Double=
+  {
+    // Show parameters do that only for debug
+    println("enr="+tabStr(0))
+    for(i <- 1 until tabStr.length )
+    {
+      println("tabStr("+i+")="+tabStr(i))
+    }
+     
+    SamplePlugin.count+=1
+    // Do some stuff with enreg
+    
+    // return a result as Double
+    42D
+  }
+
+}
+object SamplePlugin
+{
+// Put here satic variable as counter ...
+  var count=0
+}
